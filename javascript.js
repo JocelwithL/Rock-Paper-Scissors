@@ -1,36 +1,52 @@
 
-const options = ["Rock", "Paper", "Scissors"]
+const options = ["rock", "paper", "scissors"]
 
 function getComputerChoice() {
-    const choice = options[Math.floor(Math.random() * 3)];
-    return choice;
+    return options[Math.floor(Math.random() * options.length)];
 }
 
 function playRound(playerSelection, computerSelection) {
     if (playerSelection === computerSelection) {
-        console.log( `It's a tie ${playerSelection} friends with ${computerSelection}`);
+        return `It's a tie ${playerSelection} friends with ${computerSelection}`;
     }
-    else if (playerSelection === "Rock" && computerSelection === "Scissors" ||
-             playerSelection === "Scissors" && computerSelection === "Paper" ||
-             playerSelection === "Paper" && computerSelection === "Rock") {
-                console.log( `You win! ${playerSelection} beats ${computerSelection}`);
+    else if (playerSelection === "rock" && computerSelection === "scissors" ||
+             playerSelection === "scissors" && computerSelection === "paper" ||
+             playerSelection === "paper" && computerSelection === "rock") {
+                return `You win! ${playerSelection} beats ${computerSelection}`;
              }
-    else if (playerSelection === "Scissors" && computerSelection === "Rock" ||
-            playerSelection === "Paper" && computerSelection === "Scissors" ||
-            playerSelection === "Rock" && computerSelection === "Paper") {
-                console.log(`You loose! ${computerSelection} beats ${playerSelection}`)
+    else if (playerSelection === "scissors" && computerSelection === "rock" ||
+            playerSelection === "paper" && computerSelection === "scissors" ||
+            playerSelection === "rock" && computerSelection === "paper") {
+                return `You loose! ${computerSelection} beats ${playerSelection}`;
     }
     else {
-                console.log("You did not enter your choice")
+                return "You did not enter your choice correctly";
     }
 }
 
+function getPlayerChoice(){
+    let validatedInput = false;
+    while(validatedInput == false){
+        let choice = prompt("Enter you choice!");
+        if (choice == null) {
+            continue;
+        }
+        choice = choice.toLowerCase();
+        if(options.includes(choice)) {
+            validatedInput = true;
+            return choice;
+        }
+        
+    }
+}
 
+function game () {
+    for (let i=0; i<5; i++) {
+        const computerSelection = getComputerChoice();
+        let playerSelection = getPlayerChoice();
+        console.log(playRound(playerSelection, computerSelection));
+    }
+    console.log("Game Over")
+}
 
-
-
-let computerSelection = getComputerChoice();
-let playerSelection = prompt("Enter your choice");
-
-playRound(playerSelection, computerSelection)
-
+game();
