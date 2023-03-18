@@ -8,14 +8,19 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="start-game">
+        <h1>ROCK PAPER SCISSORS</h1>
+        <h2 id="result-placeholder">Choose your weapon!</h2>
+
+    </div>
     <div class="selections">
-        <button class="selection">👊</button>
-        <button class="selection">✋</button>
-        <button class="selection">✌</button>
+        <button class="selection" id="rock">👊</button>
+        <button class="selection" id="paper">✋</button>
+        <button class="selection" id="scissors">✌</button>
     </div>
     <div class="results">
-        <span class="result-score">0</span>
-        <span class="result-score">0</span>
+        <span class="result-score" id="player-score">0</span>
+        <span class="result-score" id="computer-score">0</span>
         <div>
             You
         </div>
