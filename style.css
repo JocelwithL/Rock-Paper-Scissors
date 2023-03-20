@@ -145,3 +145,8 @@ body::before {
     transition: .2s;
     margin-bottom: 50px;
 }
+
+
+.score {
+    font-weight: bold;
+}

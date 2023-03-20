@@ -16,12 +16,12 @@ playAgainBtn.style.display = "none"
 document.querySelector(".selections").appendChild(playAgainBtn)
 
 
-const playerSelected = document.createElement("span");
+let playerSelected = document.createElement("span");
 playerSelected.innerHTML = "?";
 playerSelected.classList.add("player-selected");
 document.querySelector(".player-selected-slot").appendChild(playerSelected)
 
-const computerSelected = document.createElement("span");
+let computerSelected = document.createElement("span");
 computerSelected.innerHTML = "?";
 computerSelected.classList.add("player-selected");
 document.querySelector(".computer-selected-slot").appendChild(computerSelected)
@@ -38,6 +38,28 @@ buttons.forEach(function(button){
         const computerSelection = getComputerChoice();
         console.log(playRound(computerSelection,playerSelection))
         let winner = checkWinner(computerSelection, playerSelection)
+
+        if(playerSelection === "rock"){
+            playerSelected.innerHTML = "👊"
+        }
+        else if(playerSelection === "paper") {
+            playerSelected.innerHTML = "✋"
+        }
+        else{
+            playerSelected.innerHTML = "✌"
+        }
+
+        if(computerSelection === "rock"){
+            computerSelected.innerHTML = "👊"
+        }
+        else if(computerSelection === "paper") {
+            computerSelected.innerHTML = "✋"
+        }
+        else{
+            computerSelected.innerHTML = "✌"
+        }
+
+
 
             if(winner === "player") {
                 playerScore++
@@ -90,6 +112,8 @@ buttons.forEach(function(button){
               computerScore = 0;
               playerScoreEl.innerHTML = playerScore;
               computerScoreEl.innerHTML = computerScore;
+              playerSelected.innerHTML = "?"
+              computerSelected.innerHTML = "?"
         })
         
     })
