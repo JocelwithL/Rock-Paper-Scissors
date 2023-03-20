@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<div class="container">
     <div class="start-game">
         <h1>ROCK PAPER SCISSORS</h1>
         <h2 id="result-placeholder">Choose your weapon!</h2>
@@ -19,6 +20,12 @@
         <button class="selection" id="scissors">✌</button>
     </div>
     <div class="results">
+        <div class="selected player-selected-slot">
+            <!-- <span id="playerSelected">?</span> -->
+        </div>
+        <div class="selected computer-selected-slot">
+            <!-- <span id="computerSelected">?</span> -->
+        </div>
         <span class="result-score" id="player-score">0</span>
         <span class="result-score" id="computer-score">0</span>
         <div>
@@ -27,8 +34,10 @@
         <div>
             Computer
         </div>
+
         
     </div>
+</div>
     <script src="javascript.js"></script>
 </body>
 </html>

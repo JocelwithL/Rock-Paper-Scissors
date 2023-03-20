@@ -1,5 +1,5 @@
 const options = ["rock", "paper", "scissors"];
-const buttons = document.querySelectorAll('button');
+let buttons = document.querySelectorAll('button');
 const playerScoreEl = document.getElementById("player-score")
 const computerScoreEl = document.getElementById("computer-score")
 const resultPlaceholderEl = document.getElementById("result-placeholder")
@@ -7,6 +7,24 @@ const resultPlaceholderEl = document.getElementById("result-placeholder")
 function getComputerChoice() {
      return options [Math.floor(Math.random() * options.length)];
 }
+
+
+const playAgainBtn = document.createElement("button");
+playAgainBtn.innerHTML = "Play Again!";
+playAgainBtn.classList.add("play-again-btn");
+playAgainBtn.style.display = "none"
+document.querySelector(".selections").appendChild(playAgainBtn)
+
+
+const playerSelected = document.createElement("span");
+playerSelected.innerHTML = "?";
+playerSelected.classList.add("player-selected");
+document.querySelector(".player-selected-slot").appendChild(playerSelected)
+
+const computerSelected = document.createElement("span");
+computerSelected.innerHTML = "?";
+computerSelected.classList.add("player-selected");
+document.querySelector(".computer-selected-slot").appendChild(computerSelected)
 
 
 let playerScore = 0;
@@ -19,7 +37,6 @@ buttons.forEach(function(button){
         const playerSelection = button.id
         const computerSelection = getComputerChoice();
         console.log(playRound(computerSelection,playerSelection))
-        
         let winner = checkWinner(computerSelection, playerSelection)
 
             if(winner === "player") {
@@ -45,15 +62,35 @@ buttons.forEach(function(button){
             console.log(`You defeated the computer!`)
             playerScore = 0;
             computerScore = 0;
-            resultPlaceholderEl.innerHTML = `Congratulations! <br>You defeated the computer! <br> Play again!`
-            
+            resultPlaceholderEl.innerHTML = `Congratulations! <br><br>You defeated the computer!`
+            buttons.forEach(function(button) {
+                button.style.display = "none";
+              });
+              playAgainBtn.style.display = "inline-block"
+
         }
         else if (computerScore === roundLength) {
             console.log("Awww! You have been defeated by the computer!")
             playerScore = 0;
             computerScore = 0;
-            resultPlaceholderEl.innerHTML = `Awww! <br>You have been defeated by the computer! <br> Play again!`
+            resultPlaceholderEl.innerHTML = `Awww! <br><br>You have been defeated by the computer!`
+            buttons.forEach(function(button) {
+                button.style.display = "none";
+              });
+              playAgainBtn.style.display = "inline-block"
         }
+
+        playAgainBtn.addEventListener("click", () => {
+            buttons.forEach(function(button) {
+                button.style.display = "block";
+              });
+              playAgainBtn.style.display = "none"
+              resultPlaceholderEl.innerHTML = "Choose your weapon!"
+              playerScore = 0;
+              computerScore = 0;
+              playerScoreEl.innerHTML = playerScore;
+              computerScoreEl.innerHTML = computerScore;
+        })
         
     })
 })
